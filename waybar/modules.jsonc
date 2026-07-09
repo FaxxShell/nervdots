@@ -1,0 +1,167 @@
+//   _ _ _ _____ __ __ _____ _____ _____
+//  | | | |  _  |  |  | __  |  _  | __  |
+//  | | | |     |_   _| __ -|     |    -|
+//  |_____|__|__| |_| |_____|__|__|__|__|  
+//
+//  by FaxxHaxx
+
+
+{
+	// workspaces
+// dwl tags (workspaces)
+    "dwl/tags": {
+        "num-tags": 9,
+        "on-click": "activate"
+    },
+   	
+	// taskbar
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 18,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+	},
+	
+	// clock
+"clock": {
+    "interval": 1,
+    "format": "{0:%I:%M %p}",
+    "tooltip-format": "<big>{calendar}</big>",
+    "calendar": {
+        "mode": "month",
+        "mode-mon-col": 3,
+        "weeks-pos": "right",
+        "on-scroll": 1,
+        "format": {
+            "months": "<span color='#ffffff'><b>{}</b></span>",
+            "days": "<span color='#ffffff'><b>{}</b></span>",
+            "weeks": "<span color='#ffffff'><b>W{}</b></span>",
+            "weekdays": "<span color='#ffffff'><b>{}</b></span>",
+            "today": "<span color='#ffffff'><b><u>{}</u></b></span>"
+        }
+    }
+},
+
+	
+	// hardware
+	"group/hardware": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 300,
+			"children-class": "not-memory",
+			"transition-left-to-right": false
+		},        
+		"modules": [
+			"custom/system",
+			"cpu",
+			"temperature",
+			"disk",
+			"memory"
+		]
+	},
+	
+	// system
+	"custom/system": {
+		"format": "<span size='small'>  </span>",
+		"tooltip": false
+	},
+	
+	// CPU
+	"cpu": {
+		"format": " 󰍛 {usage}% ",
+		"on-click": "kitty btop"
+	},
+	
+	// temperature
+	"temperature": {
+		"format": " 󰈸 {temperatureC}°C ",
+		"on-click": "kitty btop"
+	},
+	
+	// harddisc space
+	"disk": {
+		"interval": 30,
+		"format": " 󰋊 {percentage_used}% ",
+		"path": "/",
+		"on-click": "kitty btop"
+	}, 
+	
+	// memory
+	"memory": {
+		"format": "  {}% ",
+		"on-click": "kitty btop"
+	},
+	
+	// separator
+	"custom/separator": {
+    "format": "|",
+    "tooltip": false
+    },
+    "custom/separator-space": {
+    "format": " ",
+    "tooltip": false
+},
+
+	
+// audio (Native WirePlumber API)
+	"wireplumber": {
+		"scroll-step": 5,
+		"format": "{icon}   {volume}%",
+		"format-muted": "󰖁  Muted",
+		"format-icons": ["", "", ""],
+		"on-click": "pavucontrol",
+		"on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+	},
+	
+	// bluetooth
+	"bluetooth": {
+		"format": " {status}",
+		"format-disabled": " {status}",
+		"format-off": " {status}",
+		"interval": 30,
+		"on-click": "blueman-manager",
+		"format-no-controller": ""
+	},
+	
+  // network
+  "network": {
+	"interval": 2,
+    "format": "↑ {bandwidthUpBits} ↓ {bandwidthDownBits}",
+    "format-disconnected": "Disconnected",
+    "tooltip-format": " {ifname} via {gwaddri}",
+    "tooltip-format-wifi": "  {ifname} @ {essid}\nIP: {ipaddr}\nStrength: {signalStrength}%\nFreq: {frequency}MHz\nUp: {bandwidthUpBits} Down: {bandwidthDownBits}",
+    "tooltip-format-ethernet": " {ifname}\nIP: {ipaddr}\n up: {bandwidthUpBits} down: {bandwidthDownBits}",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 50,
+    "on-click": "~/.config/.settings/networkmanager.sh"
+  },
+	
+	// battery
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 10
+		},
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": " {capacity}%",
+		"format-icons": ["", "", "", "", ""]
+	},
+	
+	// power menu
+	"custom/exit": {
+		"format": "",
+		"on-click": "/home/faxxhaxx/.config/hypr/scripts/powermenu.sh",
+		"tooltip": false		
+	},
+
+  "custom/music": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "waybar-module-music",
+  },
+}
+
+
